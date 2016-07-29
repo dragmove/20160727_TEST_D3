@@ -152,7 +152,7 @@ class App extends Component {
   function setD3Scale() {
     var data = {
       items: [
-        { date: '06.30', avg: 0 },
+        { date: '06.30', avg: 10 },
         { date: '07.01', avg: 5 },
         { date: '07.02', avg: 40 },
         { date: '07.03', avg: 5 },
@@ -289,7 +289,7 @@ class App extends Component {
         .style("fill", "blue");
         */
       d3.select(this)
-        .attr('fill', 'rgba(255, 255, 255, 1.0');
+        .attr('fill', 'rgba(255, 255, 255, 1.0)');
     });
 
     circles.on('mouseout', function(d, i) {
@@ -301,9 +301,68 @@ class App extends Component {
         .style("fill", "rgba(128, 128, 0, 1.0)");
         */
       d3.select(this)
-        .attr('fill', 'rgba(128, 128, 0, 1.0');
+        .attr('fill', 'rgba(128, 128, 0, 1.0)');
     });
 
+
+
+
+
+    var lineGroup = svg.append('g')
+      .attr('class', 'lines');
+
+    var lines = lineGroup.selectAll('line')
+      .data(data.items)
+      .enter()
+      .append('line')
+      .attr('x1', function(d, i) {
+        if(i <= 0) return; // there is not 1st line.
+
+        let space = (width - (paddingLeft + paddingRight)) / data.items.length,
+          x1 = paddingLeft + space + ( (i - 1) * space);
+        return x1;
+      })
+      .attr('y1', function(d, i) {
+        if(i <= 0) return; // there is not 1st line.
+
+        let _d = data.items[i - 1],
+          y1 = reverseScaleY(_d.avg);
+        return y1;
+      })
+      .attr('x2', function(d, i) {
+        if(i <= 0) return; // there is not 1st line.
+
+        let space = (width - (paddingLeft + paddingRight)) / data.items.length,
+          x2 = paddingLeft + space + (i * space);
+        return x2;
+      })
+      .attr('y2', function(d, i) {
+        if(i <= 0) return; // there is not 1st line.
+        let y2 = reverseScaleY(d.avg);
+        return y2;
+      })
+      // .attr('stroke-dasharray', '2,2');
+
+/*
+    var circles = svg.selectAll('circle')
+      .data(data.items)
+      .enter()
+      .append('circle')
+      .attr('cx', function(d, i) {
+        var space = (width - (paddingLeft + paddingRight)) / data.items.length;
+        return paddingLeft + space + (i * space);
+      })
+      .attr('cy', function(d) {
+        return reverseScaleY(d.avg);
+      })
+      .attr('r', function(d) {
+        return rScale(d.avg);
+      })
+      .attr('fill', 'rgba(128, 128, 0, 1.0)')
+      .attr('stroke', 'rgba(255, 0, 0, 0.5)')
+      .attr('stroke-width', function(d) {
+        return 5;
+      });*/
 
 
 

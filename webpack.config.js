@@ -19,7 +19,8 @@ module.exports = {
 	context: __dirname,
 
     entry: {
-    	main: ['webpack/hot/dev-server'/*, 'babel-polyfill'*/, './app/src/main.js']
+    	main: ['webpack/hot/dev-server'/*, 'babel-polyfill'*/, './app/src/main.js'],
+      line: ['webpack/hot/dev-server'/*, 'babel-polyfill'*/, './app/src/line.js']
     },
 
     output: {
