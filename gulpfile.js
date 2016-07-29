@@ -36,31 +36,3 @@ gulp.task('webpack-dev-server', function() {
 		if(err) console.error('[webpack-dev-server failed to start :', err);
 	});
 });
-
-/*
- * build
- */
-gulp.task('build', sequence('concatByWebpack', 'custom-backup', 'minify'));
-
-gulp.task('concatByWebpack', function() {
-    return gulp.src('')
-        .pipe( webpackStream(require('./webpack.config.js')) )
-        .pipe( gulp.dest('app/build') );
-});
-
-gulp.task('custom-backup', function() {
-    var date = new Date(),
-        prefix = dateFormat(date, 'yyyymmdd-HH-MM'),
-        dir = 'app/backup/' + dateFormat(date, 'yyyy') + '/' + dateFormat(date, 'mmdd');
-
-    return gulp.src('app/build/main.js')
-        .pipe( rename({prefix: prefix + '_'}) )
-        .pipe( gulp.dest(dir) );
-});
-
-gulp.task('minify', function() {
-    return gulp.src(['app/build/main.js'])
-        .pipe( rename({suffix: '.min'}) )
-        .pipe( header(banner, {pkg: pkg}) )
-        .pipe (gulp.dest('app/build') );
-});

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="" />
+    <title>TEST - D3</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #wrapper {
+        width: 100%;
+      }
+
+      .svg-container {
+        width: 100%;
+        margin: 0 auto;
+        overflow: scroll-x;
+      }
+
+      .axis-y path {
+        fill: none;
+        stroke: #388E3C;
+        shape-rendering: auto;
+      }
+      .axis-y line {
+        fill: none;
+        stroke: #388E3C;
+        stroke-width: 1;
+        shape-rendering: auto;
+      }
+      .axis-y text {
+        font-family: 'Roboto', sans-serif;
+        font-size: 11px;
+        fill: #388E3C;
+        /* text-anchor: middle; */
+      }
+
+      .axis-x path {
+        fill: none;
+        stroke: #004D40;
+        shape-rendering: auto;
+      }
+      .axis-x line {
+        fill: none;
+        stroke: #004D40;
+        stroke-width: 1;
+        shape-rendering: auto;
+      }
+      .axis-x text {
+        font-family: 'Roboto', sans-serif;
+        font-size: 11px;
+        fill: #004D40;
+        /* text-anchor: middle; */
+      }
+
+      .lines line {
+        fill: none;
+        stroke: rgba(128, 128, 0, 0.5);
+        shape-rendering: auto;
+      }
+
+      .circles circle {
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+
+      /*
+       * desktop mode
+       */
+      @media (min-width:960px) {
+        #wrapper {
+          margin: 0 auto;
+          max-width: 960px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <div class="svg-container">
+        <svg class="svg-contents" width="520" height="180" viewBox="0 0 520 180" preserveAspectRatio="xMinYMin meet"></svg>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="lib/jquery-1.12.2.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="lib/d3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="scroll.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -4,7 +4,7 @@ var webpack = require('webpack'),
 
 module.exports = {
     // https://webpack.github.io/docs/build-performance.html#sourcemaps
-    devtool: 'eval-source-map', // when build production app, set 'source-map'.
+    // devtool: 'eval-source-map', // when build production app, set 'source-map'.
 
     devServer: {
         contentBase: './app',
@@ -19,7 +19,9 @@ module.exports = {
 	context: __dirname,
 
     entry: {
-    	main: ['webpack/hot/dev-server'/*, 'babel-polyfill'*/, './app/src/main.js'],
+    	responsive: ['webpack/hot/dev-server'/*, 'babel-polyfill'*/, './app/src/responsive.js'],
+      resize: ['webpack/hot/dev-server'/*, 'babel-polyfill'*/, './app/src/resize.js'],
+      scroll: ['webpack/hot/dev-server'/*, 'babel-polyfill'*/, './app/src/scroll.js'],
       line: ['webpack/hot/dev-server'/*, 'babel-polyfill'*/, './app/src/line.js']
     },
 
@@ -36,16 +38,16 @@ module.exports = {
     },
 
     plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-                drop_console: true,
-				warnings: false
-			},
-			sourceMap: false,
-			mangle: true
-		})
-	],
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          drop_console: true,
+          warnings: false
+        },
+        sourceMap: false,
+        mangle: true
+      })
+    ],
 
     resolve: {
     	// you can now require('file') instead of require('file.coffee')
